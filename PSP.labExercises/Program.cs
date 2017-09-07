@@ -1,12 +1,13 @@
-﻿using System;
+﻿using PSP.labExercises.Instruments;
 
 namespace PSP.labExercises
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Guitar guitar = new Guitar();
+            guitar.PlayInstrument();
         }
     }
 }
