@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PSP.labExercises.Recipes
+namespace PSP.labExercises_template.Recipes
 {
     class PizzaRecipe : Recipe
     {
@@ -14,7 +14,7 @@ namespace PSP.labExercises.Recipes
 
         protected override void Execute(Step step)
         {
-            Console.WriteLine($"Doing: {step.Definition} the Italian way");
+            Console.WriteLine($"Doing: {step.Definition} the Italian way for {step.Duration} minutes");
         }
 
         protected override void PrepareIngredients()

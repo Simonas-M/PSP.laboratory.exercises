@@ -1,11 +1,12 @@
-﻿using PSP.labExercises_template.Recipes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PSP.labExercises_strategy;
+using PSP.labExercises_strategy.Recipes;
 
-namespace PSP.labExercises_template
+namespace PSP.labExcercises_strategy
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             List<Step> pancakeSteps = new List<Step>
             {
@@ -13,7 +14,7 @@ namespace PSP.labExercises_template
                 new Step{Definition="Mix ingredients", Duration= 3},
                 new Step{Definition="Heat pan", Duration= 3}
             };
-            Recipe pancake = new PancakeRecipe(pancakeSteps);
+            IRecipe pancake = new PancakeRecipe(pancakeSteps);
             pancake.MakeFood();
         }
     }

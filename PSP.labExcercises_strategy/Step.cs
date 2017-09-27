@@ -1,4 +1,4 @@
-﻿namespace PSP.labExercises_template
+﻿namespace PSP.labExercises_strategy
 {
     class Step
     {

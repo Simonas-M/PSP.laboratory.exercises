@@ -1,34 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using PSP.labExcercises_strategy;
 
-namespace PSP.labExercises_template.Recipes
+namespace PSP.labExercises_strategy.Recipes
 {
-    class PancakeRecipe : Recipe
+    class PancakeRecipe : IRecipe
     {
-        public PancakeRecipe(List<Step> steps) : base(steps) { }
+        private List<Step> Steps;
+
+        public PancakeRecipe(List<Step> steps)
+        {
+            Steps = steps;
+        }
 
         private void AddButter(int grams)
         {
             Console.WriteLine($"Adding {grams} grams of butter into the pan");
         }
 
-        protected override void Cook()
+        private void Cook()
         {
             AddButter(100);
             Console.WriteLine("Cooking pancakes in the pan");
         }
 
-        protected override void Execute(Step step)
+        private void Execute(Step step)
         {
             Console.WriteLine($"Doing: {step.Definition} the Lithuanian way for {step.Duration} minutes");
         }
 
-        protected override void PrepareIngredients()
+        private void PrepareIngredients()
         {
             Console.WriteLine("Get the eggs");
             Console.WriteLine("Get the milk");
             Console.WriteLine("Get the flour");
             Console.WriteLine("Get the butter");
+        }
+
+        public void MakeFood()
+        {
+            PrepareIngredients();
+            foreach (var step in Steps)
+            {
+                Execute(step);
+            }
+            Cook();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PSP.labExercises
+namespace PSP.labExercises_template
 {
     abstract class Recipe
     {
