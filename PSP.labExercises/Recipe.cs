@@ -4,27 +4,30 @@ namespace PSP.labExercises_template
 {
     abstract class Recipe
     {
-        public List<Step> Steps = new List<Step>();
+        public IEnumerable<Step> Steps;
 
-        public Recipe(List<Step> steps)
+        public Recipe(IEnumerable<Step> steps)
         {
             Steps = steps;
         }
 
-        public void MakeFood()
+        public void GetRecipe()
         {
             PrepareIngredients();
             foreach(var step in Steps)
             {
                 Execute(step);
             }
-            Cook();
+            Finally();
+            GetPrice();
         }
 
         protected abstract void PrepareIngredients();
 
         protected abstract void Execute(Step step);
 
-        protected abstract void Cook();
+        protected abstract void Finally();
+
+        protected abstract void GetPrice();
     }
 }
