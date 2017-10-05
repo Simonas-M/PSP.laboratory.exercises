@@ -24,6 +24,16 @@ namespace PSP.labExercises_template
                 new Step{Definition="Heat oven", Duration = 15, Cost = 0.22M}
             };
 
+            List<Step> cupcakeSteps = new List<Step>
+            {
+                new Step{Definition="Add flour", Duration = 2, Cost = 0.1M},
+                new Step{Definition="Add eggs", Duration = 2, Cost = 0.25M},
+                new Step{Definition="Add butter", Duration = 2, Cost = 0.24M},
+                new Step{Definition="Add milk", Duration = 1, Cost = 0.46M},
+                new Step{Definition="Mix ingredients", Duration = 2, Cost = 0.1M},
+                new Step{Definition="Heat oven", Duration = 15, Cost = 0.22M}
+            };
+
             Recipe pancakeFastFood = new PancakeFastFood(pancakeSteps);
             pancakeFastFood.GetRecipe();
 
@@ -41,6 +51,16 @@ namespace PSP.labExercises_template
 
             Recipe pizzaRestaurant = new PizzaRestaurant(pizzaSteps);
             pizzaRestaurant.GetRecipe();
+
+            System.Console.WriteLine("\n\n");
+
+            Recipe cupcakeFastFood = new CupcakeFastFood(cupcakeSteps);
+            cupcakeFastFood.GetRecipe();
+
+            System.Console.WriteLine("\n\n");
+
+            Recipe cupcakeRestaurant = new CupcakeRestaurant(cupcakeSteps);
+            cupcakeRestaurant.GetRecipe();
         }
     }
 }

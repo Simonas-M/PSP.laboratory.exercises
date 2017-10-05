@@ -31,6 +31,18 @@ namespace PSP.labExcercises_strategy
             IRecipeDetails pizzaRestaurant = new Pizza(pizzaSteps, new RestaurantPrice());
             IRecipeDetails pizzaFastFood = new Pizza(pizzaSteps, new FastFoodPrice());
 
+            List<Step> cupcakeSteps = new List<Step>
+            {
+                new Step{Definition="Add flour", Duration = 2, Cost = 0.1M},
+                new Step{Definition="Add eggs", Duration = 2, Cost = 0.25M},
+                new Step{Definition="Add butter", Duration = 2, Cost = 0.24M},
+                new Step{Definition="Add milk", Duration = 1, Cost = 0.46M},
+                new Step{Definition="Mix ingredients", Duration = 2, Cost = 0.1M},
+                new Step{Definition="Heat oven", Duration = 15, Cost = 0.22M}
+            };
+            IRecipeDetails cupcakeRestaurant = new Cupcake(cupcakeSteps, new RestaurantPrice());
+            IRecipeDetails cupcakeFastFood = new Cupcake(cupcakeSteps, new FastFoodPrice());
+
             Recipe pancakeRecipeF = new Recipe(pancakeFastFood);
             pancakeRecipeF.GetRecipe();
             System.Console.WriteLine("\n\n");
@@ -44,6 +56,14 @@ namespace PSP.labExcercises_strategy
             System.Console.WriteLine("\n\n");
             Recipe pizzaRecipeR = new Recipe(pizzaRestaurant);
             pizzaRecipeR.GetRecipe();
+
+            System.Console.WriteLine("\n\n");
+
+            Recipe cupcakeRecipeF = new Recipe(cupcakeFastFood);
+            cupcakeRecipeF.GetRecipe();
+            System.Console.WriteLine("\n\n");
+            Recipe cupcakeRecipeR = new Recipe(cupcakeRestaurant);
+            cupcakeRecipeR.GetRecipe();
         }
     }
 }
