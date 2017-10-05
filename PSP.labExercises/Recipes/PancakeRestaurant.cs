@@ -34,8 +34,8 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            decimal price = Steps.Sum(x => x.Cost);
-            int time = Steps.Sum(x => x.Duration);
+            decimal price = Steps.Sum(step => step.Cost);
+            int time = Steps.Sum(step => step.Duration);
             Console.WriteLine($"Price of Restaurant Panacake is {price * 0.1M * time}");
         }
     }

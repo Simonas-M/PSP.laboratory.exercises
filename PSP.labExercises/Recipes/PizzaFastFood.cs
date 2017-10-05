@@ -28,8 +28,8 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            decimal price = Steps.Sum(x => x.Cost);
-            int time = Steps.Where(x => Steps.ElementAt(0) == x || Steps.ElementAt(1) == x).Sum(x => x.Duration);
+            decimal price = Steps.Sum(step => step.Cost);
+            int time = Steps.Where(step => Steps.ElementAt(0) == step || Steps.ElementAt(1) == step).Sum(x => x.Duration);
             Console.WriteLine($"Price of Fast Food Pizza is {price * 0.1M * time}");
         }
     }

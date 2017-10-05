@@ -9,8 +9,8 @@ namespace PSP.labExcercises_strategy.Price_policies
     {
         public void GetPrice(IEnumerable<Step> steps)
         {
-            decimal price = steps.Sum(x => x.Cost);
-            int time = steps.Sum(x => x.Duration);
+            decimal price = steps.Sum(step => step.Cost);
+            int time = steps.Sum(step => step.Duration);
             Console.WriteLine($"Price is {price * 0.1M * time}");
         }
     }
