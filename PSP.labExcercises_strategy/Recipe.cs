@@ -1,10 +1,10 @@
 ﻿namespace PSP.labExcercises_strategy
 {
-    public class Recipe
+    class Recipe
     {
-        private IRecipeSteps _recipe;
+        private IRecipeDetails _recipe;
 
-        public Recipe(IRecipeSteps recipe)
+        public Recipe(IRecipeDetails recipe)
         {
             _recipe = recipe;
         }
@@ -17,6 +17,7 @@
                 _recipe.Execute(step);
             }
             _recipe.Finally();
+            _recipe.GetPrice();
         }
     }
 }

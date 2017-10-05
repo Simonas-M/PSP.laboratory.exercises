@@ -1,8 +1,9 @@
 ﻿namespace PSP.labExercises_strategy
 {
-    public class Step
+    class Step
     {
         public string Definition { get; set; }
         public int Duration { get; set; }
+        public decimal Cost { get; set; }
     }
 }

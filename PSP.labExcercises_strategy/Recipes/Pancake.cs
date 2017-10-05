@@ -4,13 +4,15 @@ using PSP.labExcercises_strategy;
 
 namespace PSP.labExercises_strategy.Recipes
 {
-    public class Pancake : IRecipeSteps
+    class Pancake : IRecipeDetails
     {
         private IEnumerable<Step> _steps;
+        private IPricePolicy _pricePolicy;
 
-        public Pancake(List<Step> steps)
+        public Pancake(List<Step> steps, IPricePolicy pricePolicy)
         {
             _steps = steps;
+            _pricePolicy = pricePolicy;
         }
 
         public IEnumerable<Step> GetSteps()
@@ -40,6 +42,11 @@ namespace PSP.labExercises_strategy.Recipes
             Console.WriteLine("Get the milk");
             Console.WriteLine("Get the flour");
             Console.WriteLine("Get the butter");
+        }
+
+        public void GetPrice()
+        {
+            _pricePolicy.GetPrice(GetSteps());
         }
     }
 }

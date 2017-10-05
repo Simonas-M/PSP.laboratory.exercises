@@ -4,13 +4,15 @@ using PSP.labExercises_strategy;
 
 namespace PSP.labExcercises_strategy.Recipes
 {
-    class Pizza : IRecipeSteps
+    class Pizza : IRecipeDetails
     {
         private IEnumerable<Step> _steps;
+        private IPricePolicy _pricePolicy;
 
-        public Pizza(IEnumerable<Step> steps)
+        public Pizza(IEnumerable<Step> steps, IPricePolicy pricePolicy)
         {
             _steps = steps;
+            _pricePolicy = pricePolicy;
         }
 
         public void Finally()
@@ -34,6 +36,11 @@ namespace PSP.labExcercises_strategy.Recipes
         public IEnumerable<Step> GetSteps()
         {
             return _steps;
+        }
+
+        public void GetPrice()
+        {
+            _pricePolicy.GetPrice(GetSteps());
         }
     }
 }
