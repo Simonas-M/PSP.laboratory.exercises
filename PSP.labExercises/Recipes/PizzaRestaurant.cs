@@ -28,9 +28,7 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            decimal price = Steps.Sum(step => step.Cost);
-            int time = Steps.Sum(step => step.Duration);
-            Console.WriteLine($"Price of Restaurant Pizza is {price * 0.1M * time}");
+            ProductPriceCalculator.GetProductPrice(Steps, "Restaurant");
         }
     }
 }

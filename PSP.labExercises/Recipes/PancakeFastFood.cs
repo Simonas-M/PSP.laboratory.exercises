@@ -34,9 +34,7 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            decimal price = Steps.Sum(step => step.Cost);
-            int time = Steps.Where(step => Steps.ElementAt(0) == step || Steps.ElementAt(1) == step).Sum(x => x.Duration);
-            Console.WriteLine($"Price of Fast Food Pancake is {price * 0.1M * time}");
+            ProductPriceCalculator.GetProductPrice(Steps, "Fast Food");
         }
     }
 }

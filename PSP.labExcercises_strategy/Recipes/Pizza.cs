@@ -4,17 +4,8 @@ using PSP.labExercises_strategy;
 
 namespace PSP.labExcercises_strategy.Recipes
 {
-    class Pizza : IRecipeDetails
+    class Pizza : IProduct
     {
-        private IEnumerable<Step> _steps;
-        private IPricePolicy _pricePolicy;
-
-        public Pizza(IEnumerable<Step> steps, IPricePolicy pricePolicy)
-        {
-            _steps = steps;
-            _pricePolicy = pricePolicy;
-        }
-
         public void Finally()
         {
             Console.WriteLine("Cook pizza in the oven");
@@ -31,16 +22,6 @@ namespace PSP.labExcercises_strategy.Recipes
             Console.WriteLine("Get Tomato sauce");
             Console.WriteLine("Get jelapeno");
             Console.WriteLine("Get pizza daugh");
-        }
-
-        public IEnumerable<Step> GetSteps()
-        {
-            return _steps;
-        }
-
-        public void GetPrice()
-        {
-            _pricePolicy.GetPrice(GetSteps());
         }
     }
 }

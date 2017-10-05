@@ -3,16 +3,12 @@ using PSP.labExercises_strategy;
 
 namespace PSP.labExcercises_strategy
 {
-    interface IRecipeDetails
+    interface IProduct
     {
-        IEnumerable<Step> GetSteps();
-
         void PrepareIngredients();
 
         void Execute(Step step);
 
         void Finally();
-
-        void GetPrice();
     }
 }

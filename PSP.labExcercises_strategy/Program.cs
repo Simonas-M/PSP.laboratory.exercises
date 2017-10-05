@@ -16,8 +16,6 @@ namespace PSP.labExcercises_strategy
                 new Step{Definition="Mix ingredients", Duration = 10, Cost = 1.25M},
                 new Step{Definition="Heat pan", Duration = 5, Cost = 0.5M}
             };
-            IRecipeDetails pancakeRestaurant = new Pancake(pancakeSteps, new RestaurantPrice());
-            IRecipeDetails pancakeFastFood = new Pancake(pancakeSteps, new FastFoodPrice());
 
             List<Step> pizzaSteps = new List<Step>
             {
@@ -28,8 +26,6 @@ namespace PSP.labExcercises_strategy
                 new Step{Definition="Add salami", Duration = 2, Cost = 2.33M},
                 new Step{Definition="Heat oven", Duration = 15, Cost = 0.22M}
             };
-            IRecipeDetails pizzaRestaurant = new Pizza(pizzaSteps, new RestaurantPrice());
-            IRecipeDetails pizzaFastFood = new Pizza(pizzaSteps, new FastFoodPrice());
 
             List<Step> cupcakeSteps = new List<Step>
             {
@@ -40,30 +36,34 @@ namespace PSP.labExcercises_strategy
                 new Step{Definition="Mix ingredients", Duration = 2, Cost = 0.1M},
                 new Step{Definition="Heat oven", Duration = 15, Cost = 0.22M}
             };
-            IRecipeDetails cupcakeRestaurant = new Cupcake(cupcakeSteps, new RestaurantPrice());
-            IRecipeDetails cupcakeFastFood = new Cupcake(cupcakeSteps, new FastFoodPrice());
 
-            Recipe pancakeRecipeF = new Recipe(pancakeFastFood);
+            Recipe pancakeRecipeF = new Recipe(new Pancake(), new FastFoodPrice(), pancakeSteps);
             pancakeRecipeF.GetRecipe();
+            pancakeRecipeF.GetPrice();
             System.Console.WriteLine("\n\n");
-            Recipe pancakeRecipeR = new Recipe(pancakeRestaurant);
+            Recipe pancakeRecipeR = new Recipe(new Pancake(), new RestaurantPrice(), pancakeSteps);
             pancakeRecipeR.GetRecipe();
+            pancakeRecipeR.GetPrice();
 
             System.Console.WriteLine("\n\n");
 
-            Recipe pizzaRecipeF = new Recipe(pizzaFastFood);
+            Recipe pizzaRecipeF = new Recipe(new Pizza(), new FastFoodPrice(), pizzaSteps);
             pizzaRecipeF.GetRecipe();
+            pizzaRecipeF.GetPrice();
             System.Console.WriteLine("\n\n");
-            Recipe pizzaRecipeR = new Recipe(pizzaRestaurant);
+            Recipe pizzaRecipeR = new Recipe(new Pizza(), new RestaurantPrice(), pizzaSteps);
             pizzaRecipeR.GetRecipe();
+            pizzaRecipeR.GetPrice();
 
             System.Console.WriteLine("\n\n");
 
-            Recipe cupcakeRecipeF = new Recipe(cupcakeFastFood);
+            Recipe cupcakeRecipeF = new Recipe(new Pizza(), new FastFoodPrice(), cupcakeSteps);
             cupcakeRecipeF.GetRecipe();
+            cupcakeRecipeF.GetPrice();
             System.Console.WriteLine("\n\n");
-            Recipe cupcakeRecipeR = new Recipe(cupcakeRestaurant);
+            Recipe cupcakeRecipeR = new Recipe(new Pizza(), new RestaurantPrice(), cupcakeSteps);
             cupcakeRecipeR.GetRecipe();
+            cupcakeRecipeR.GetPrice();
         }
     }
 }

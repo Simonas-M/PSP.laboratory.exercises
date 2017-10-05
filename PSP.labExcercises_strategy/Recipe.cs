@@ -1,23 +1,34 @@
-﻿namespace PSP.labExcercises_strategy
+﻿using PSP.labExercises_strategy;
+using System.Collections.Generic;
+
+namespace PSP.labExcercises_strategy
 {
     class Recipe
     {
-        private IRecipeDetails _recipe;
+        private IProduct _product;
+        private IPricePolicy _pricePolicy;
+        private IEnumerable<Step> _steps;
 
-        public Recipe(IRecipeDetails recipe)
+        public Recipe(IProduct product, IPricePolicy pricePolicy, IEnumerable<Step> steps)
         {
-            _recipe = recipe;
+            _product = product;
+            _pricePolicy = pricePolicy;
+            _steps = steps;
         }
 
         public void GetRecipe()
         {
-            _recipe.PrepareIngredients();
-            foreach (var step in _recipe.GetSteps())
+            _product.PrepareIngredients();
+            foreach (var step in _steps)
             {
-                _recipe.Execute(step);
+                _product.Execute(step);
             }
-            _recipe.Finally();
-            _recipe.GetPrice();
+            _product.Finally();
+        }
+
+        public void GetPrice()
+        {
+            _pricePolicy.GetPrice(_steps);
         }
     }
 }
