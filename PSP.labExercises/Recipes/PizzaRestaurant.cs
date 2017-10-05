@@ -6,6 +6,7 @@ namespace PSP.labExercises_template.Recipes
 {
     class PizzaRestaurant : Recipe
     {
+        private RestaurantPriceCalculator _priceCalculator = new RestaurantPriceCalculator();
         public PizzaRestaurant(IEnumerable<Step> steps) : base(steps) { }
 
         protected override void Finally()
@@ -28,7 +29,7 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            ProductPriceCalculator.GetProductPrice(Steps, "Restaurant");
+            _priceCalculator.GetPrice(Steps);
         }
     }
 }

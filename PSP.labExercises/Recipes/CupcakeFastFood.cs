@@ -6,6 +6,7 @@ namespace PSP.labExercises_template.Recipes
 {
     class CupcakeFastFood : Recipe
     {
+        private FastFoodPriceCalculator _priceCalculator = new FastFoodPriceCalculator();
         public CupcakeFastFood(IEnumerable<Step> steps) : base(steps) { }
 
         protected override void Finally()
@@ -29,7 +30,7 @@ namespace PSP.labExercises_template.Recipes
 
         protected override void GetPrice()
         {
-            ProductPriceCalculator.GetProductPrice(Steps, "Fast Food");
+            _priceCalculator.GetPrice(Steps);
         }
     }
 }
