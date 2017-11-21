@@ -4,22 +4,28 @@ import com.simonas.psp.survey.data.entities.User;
 import com.simonas.psp.survey.repositories.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class SimpleUserRepository implements UserRepository {
+    private List<User> users = new ArrayList<>();
+
     @Override
-    public boolean addUser(User user) {
-        return false;
+    public void addUser(User user) {
+        users.add(user);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return users;
     }
 
     @Override
-    public User getById(int id) {
-        return null;
+    public User getById(String id) {
+        return users.stream()
+            .filter(user -> user.getId().toString().equals(id))
+            .findFirst()
+            .orElse(null);
     }
 }
