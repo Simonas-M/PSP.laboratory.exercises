@@ -1,9 +1,12 @@
 package com.simonas.psp.survey.controllers;
 
 import com.simonas.psp.survey.data.dtos.UserCredentials;
+import com.simonas.psp.survey.data.entities.User;
 import com.simonas.psp.survey.facades.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -16,12 +19,17 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public void login(@ModelAttribute UserCredentials credentials) {
-        userFacade.login(credentials);
+    public String login(@ModelAttribute UserCredentials credentials) {
+        return userFacade.login(credentials);
     }
 
     @RequestMapping("/sign-up")
-    public void signUp(@ModelAttribute UserCredentials credentials) {
-        System.out.println(userFacade.signUp(credentials));
+    public String signUp(@ModelAttribute UserCredentials credentials) {
+        return userFacade.signUp(credentials);
+    }
+
+    @RequestMapping("/users/all")
+    public List<User> listUsers() {
+        return userFacade.getAll();
     }
 }

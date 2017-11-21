@@ -2,7 +2,7 @@ package com.simonas.psp.survey.data.entities;
 
 import java.util.UUID;
 
-public class User {
+public abstract class User {
     private UUID id;
     private String nickname;
     private String password;
