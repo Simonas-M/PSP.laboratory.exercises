@@ -3,7 +3,6 @@ package com.simonas.psp.survey.controllers;
 import com.simonas.psp.survey.data.dtos.UserCredentials;
 import com.simonas.psp.survey.data.entities.User;
 import com.simonas.psp.survey.facades.UserFacade;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 public class UserController {
     private UserFacade userFacade;
 
-    @Autowired
     public UserController(UserFacade userFacade) {
         this.userFacade = userFacade;
     }
@@ -24,6 +22,7 @@ public class UserController {
     }
 
     @RequestMapping("/sign-up")
+    @ResponseBody
     public String signUp(@ModelAttribute UserCredentials credentials) {
         return userFacade.signUp(credentials);
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MockedUserRepository implements UserRepository {
@@ -39,7 +40,7 @@ public class MockedUserRepository implements UserRepository {
     }
 
     @Override
-    public User getById(String id) {
-        return mockedUsers.get(0);
+    public Optional<User> getById(String id) {
+        return Optional.of(mockedUsers.get(0));
     }
 }

@@ -8,8 +8,10 @@ import com.simonas.psp.survey.facades.UserFacade;
 import com.simonas.psp.survey.facades.execution.SimpleExecutionFacade;
 import com.simonas.psp.survey.facades.survey.MockedSurveyFacade;
 import com.simonas.psp.survey.facades.user.AnonymousUserFacade;
+import com.simonas.psp.survey.repositories.ExecutionRepository;
 import com.simonas.psp.survey.repositories.SurveyRepository;
 import com.simonas.psp.survey.repositories.UserRepository;
+import com.simonas.psp.survey.repositories.execution.RepeatedExecutionRepository;
 import com.simonas.psp.survey.repositories.survey.MockedSurveyRepository;
 import com.simonas.psp.survey.repositories.user.MockedUserRepository;
 import com.simonas.psp.survey.services.UserService;
@@ -28,11 +30,14 @@ public class AppConfigMocked {
     public UserRepository userRepository() {
         return new MockedUserRepository(userFactory());
     }
-
+    @Bean
+    public ExecutionRepository executionRepository() {
+        return new RepeatedExecutionRepository();
+    }
 
     @Bean
     public ExecutionFacade executionFacade() {
-        return new SimpleExecutionFacade();
+        return new SimpleExecutionFacade(executionRepository(), surveyRepository(), userRepository());
     }
     @Bean
     public SurveyFacade surveyFacade() { return new MockedSurveyFacade(surveyRepository()); }

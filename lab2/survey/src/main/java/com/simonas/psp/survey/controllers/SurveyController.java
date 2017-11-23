@@ -5,6 +5,7 @@ import com.simonas.psp.survey.facades.SurveyFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class SurveyController {
     }
 
     @RequestMapping("/survey/{id}")
+    @ResponseBody
     public Survey getSurveyById(@PathVariable String id) {
         return surveyFacade.getSurveyById(id);
     }

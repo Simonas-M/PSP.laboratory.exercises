@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class InMemorySurveyRepository implements SurveyRepository {
@@ -84,9 +86,19 @@ public class InMemorySurveyRepository implements SurveyRepository {
     }
 
     @Override
-    public Survey getById(String id) {
+    public Optional<Survey> getById(String id) {
         return surveys.stream()
             .filter(survey -> survey.getId().toString().equals(id))
-            .findFirst().orElse(null);
+            .findFirst();
+    }
+
+    @Override
+    public Optional<Question> getQuestionById(String questionId) {
+        return surveys.stream()
+            .flatMap(survey -> survey.getQuestions().stream())
+            .collect(Collectors.toList())
+            .stream()
+            .filter(question -> question.getId().toString().equals(questionId))
+            .findFirst();
     }
 }

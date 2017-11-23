@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Component
 public class MockedSurveyRepository implements SurveyRepository {
@@ -66,7 +67,12 @@ public class MockedSurveyRepository implements SurveyRepository {
     }
 
     @Override
-    public Survey getById(String id) {
-        return defaultSurvey;
+    public Optional<Survey> getById(String id) {
+        return Optional.of(defaultSurvey);
+    }
+
+    @Override
+    public Optional<Question> getQuestionById(String questionId) {
+        return Optional.of(defaultSurvey.getQuestions().get(0));
     }
 }

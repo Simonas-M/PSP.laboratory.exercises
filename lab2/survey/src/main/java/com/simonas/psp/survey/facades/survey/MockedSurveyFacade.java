@@ -17,7 +17,7 @@ public class MockedSurveyFacade implements SurveyFacade {
 
     @Override
     public Survey getSurveyById(String id) {
-        return surveyRepository.getById(id);
+        return surveyRepository.getById(id).get();
     }
 
     @Override

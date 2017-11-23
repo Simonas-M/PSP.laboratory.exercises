@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Component
 public class SimpleUserRepository implements UserRepository {
@@ -22,10 +24,9 @@ public class SimpleUserRepository implements UserRepository {
     }
 
     @Override
-    public User getById(String id) {
+    public Optional<User> getById(String id) {
         return users.stream()
             .filter(user -> user.getId().toString().equals(id))
-            .findFirst()
-            .orElse(null);
+            .findFirst();
     }
 }
