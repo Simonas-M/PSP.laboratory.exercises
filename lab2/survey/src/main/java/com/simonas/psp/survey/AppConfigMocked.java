@@ -1,23 +1,22 @@
 package com.simonas.psp.survey;
 
-import com.simonas.psp.survey.data.factories.UpcaseUserFactory;
-import com.simonas.psp.survey.data.factories.UserFactory;
-import com.simonas.psp.survey.facades.ExecutionFacade;
-import com.simonas.psp.survey.facades.SurveyFacade;
-import com.simonas.psp.survey.facades.UserFacade;
-import com.simonas.psp.survey.facades.execution.SimpleExecutionFacade;
-import com.simonas.psp.survey.facades.survey.MockedSurveyFacade;
-import com.simonas.psp.survey.facades.user.AnonymousUserFacade;
-import com.simonas.psp.survey.repositories.ExecutionRepository;
-import com.simonas.psp.survey.repositories.SurveyRepository;
-import com.simonas.psp.survey.repositories.UserRepository;
-import com.simonas.psp.survey.repositories.execution.RepeatedExecutionRepository;
-import com.simonas.psp.survey.repositories.survey.MockedSurveyRepository;
-import com.simonas.psp.survey.repositories.user.MockedUserRepository;
-import com.simonas.psp.survey.services.UserService;
-import com.simonas.psp.survey.services.user.SimpleUserService;
+import com.simonas.psp.survey.data.factory.UpcaseUserFactory;
+import com.simonas.psp.survey.data.factory.UserFactory;
+import com.simonas.psp.survey.facade.ExecutionFacade;
+import com.simonas.psp.survey.facade.SurveyFacade;
+import com.simonas.psp.survey.facade.UserFacade;
+import com.simonas.psp.survey.facade.execution.SimpleExecutionFacade;
+import com.simonas.psp.survey.facade.survey.MockedSurveyFacade;
+import com.simonas.psp.survey.facade.user.AnonymousUserFacade;
+import com.simonas.psp.survey.repository.ExecutionRepository;
+import com.simonas.psp.survey.repository.SurveyRepository;
+import com.simonas.psp.survey.repository.UserRepository;
+import com.simonas.psp.survey.repository.execution.RepeatedExecutionRepository;
+import com.simonas.psp.survey.repository.survey.MockedSurveyRepository;
+import com.simonas.psp.survey.repository.user.MockedUserRepository;
+import com.simonas.psp.survey.service.UserService;
+import com.simonas.psp.survey.service.user.SimpleUserService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 public class AppConfigMocked {
