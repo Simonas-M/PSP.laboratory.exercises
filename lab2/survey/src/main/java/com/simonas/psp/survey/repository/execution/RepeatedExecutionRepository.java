@@ -4,11 +4,13 @@ import com.simonas.psp.survey.data.entity.Question;
 import com.simonas.psp.survey.data.entity.Survey;
 import com.simonas.psp.survey.data.entity.User;
 import com.simonas.psp.survey.repository.ExecutionRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Component
 public class RepeatedExecutionRepository implements ExecutionRepository {
     private Map<User, Map<Survey, Map<Question, String>>> usersAnswers = new HashMap<>();
 
