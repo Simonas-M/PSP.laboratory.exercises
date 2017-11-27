@@ -70,9 +70,8 @@ public class SimpleExecutionFacade implements ExecutionFacade {
         }
         Optional<Map<Survey, Map<Question, String>>> optionalUserAnswers = executionRepository
                                                                     .getUserAnswers(optionalUser.get());
-        if (optionalUserAnswers.isPresent()) {
-            return optionalUserAnswers.get().values().toString();
-        }
-        return "User progress is not available at the moment";
+        return optionalUserAnswers
+            .map(surveyMapMap -> surveyMapMap.values().toString())
+            .orElse("User progress is not available at the moment");
     }
 }
