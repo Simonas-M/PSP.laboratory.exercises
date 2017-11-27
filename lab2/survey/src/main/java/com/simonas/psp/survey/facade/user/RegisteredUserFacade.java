@@ -4,6 +4,7 @@ import com.simonas.psp.survey.data.dto.UserCredentials;
 import com.simonas.psp.survey.data.entity.User;
 import com.simonas.psp.survey.data.factory.UserFactory;
 import com.simonas.psp.survey.facade.UserFacade;
+import com.simonas.psp.survey.integration.InformationDeliveryService;
 import com.simonas.psp.survey.repository.UserRepository;
 import com.simonas.psp.survey.service.UserService;
 import org.springframework.stereotype.Component;
@@ -14,21 +15,21 @@ import java.util.List;
 public class RegisteredUserFacade implements UserFacade {
     private UserRepository userRepository;
     private UserService userService;
-    private UserFactory userFactory;
+    private InformationDeliveryService informationDeliveryService;
 
-    public RegisteredUserFacade(UserRepository userRepository,
-                                UserService userService,
-                                UserFactory userFactory) {
+    public RegisteredUserFacade(InformationDeliveryService informationDeliveryService,
+                                UserRepository userRepository,
+                                UserService userService) {
+        this.informationDeliveryService = informationDeliveryService;
         this.userRepository = userRepository;
         this.userService = userService;
-        this.userFactory = userFactory;
     }
 
     @Override
     public String login(UserCredentials credentials) {
         if (userService.userExists(credentials.getNickname())) {
-            if (userService.isPasswordCorrect(credentials.getPassword(), credentials.getPassword())) {
-                return "You have successfully logged in";
+            if (userService.isPasswordCorrect(credentials.getNickname(), credentials.getPassword())) {
+                return "You have successfully logged in, " + credentials.getNickname();
             }
         }
         return "Please check your credentials";
@@ -37,11 +38,12 @@ public class RegisteredUserFacade implements UserFacade {
     @Override
     public String signUp(UserCredentials credentials) {
         if (!userService.userExists(credentials.getNickname())) {
-            User user = userFactory.create(credentials.getNickname(), credentials.getPassword());
+            User user = userService.createUser(credentials.getNickname(), credentials.getPassword());
             userRepository.addUser(user);
+            informationDeliveryService.sendMessage(user, "Thanks for joining Survey Portal");
             return "Success";
         }
-        return "User with that nickname already exists";
+        return "User with nickname " + credentials.getNickname() + " already exists";
     }
 
     @Override

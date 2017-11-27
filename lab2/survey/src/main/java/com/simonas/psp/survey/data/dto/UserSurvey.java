@@ -1,7 +1,11 @@
 package com.simonas.psp.survey.data.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class UserSurvey {
+    @NotNull
     private String userId;
+    @NotNull
     private String surveyId;
 
     public String getUserId() {

@@ -8,6 +8,7 @@ import com.simonas.psp.survey.facade.UserFacade;
 import com.simonas.psp.survey.facade.execution.SimpleExecutionFacade;
 import com.simonas.psp.survey.facade.survey.MockedSurveyFacade;
 import com.simonas.psp.survey.facade.user.AnonymousUserFacade;
+import com.simonas.psp.survey.facade.user.RegisteredUserFacade;
 import com.simonas.psp.survey.repository.ExecutionRepository;
 import com.simonas.psp.survey.repository.SurveyRepository;
 import com.simonas.psp.survey.repository.UserRepository;
@@ -15,6 +16,7 @@ import com.simonas.psp.survey.repository.execution.RepeatedExecutionRepository;
 import com.simonas.psp.survey.repository.survey.MockedSurveyRepository;
 import com.simonas.psp.survey.repository.user.MockedUserRepository;
 import com.simonas.psp.survey.service.UserService;
+import com.simonas.psp.survey.service.user.MockedUserService;
 import com.simonas.psp.survey.service.user.SimpleUserService;
 import org.springframework.context.annotation.Bean;
 
@@ -42,13 +44,13 @@ public class AppConfigMocked {
     public SurveyFacade surveyFacade() { return new MockedSurveyFacade(surveyRepository()); }
     @Bean
     public UserFacade userFacade() {
-        return new AnonymousUserFacade();
+        return new AnonymousUserFacade(userRepository(), userService());
     }
 
 
     @Bean
     public UserService userService() {
-        return new SimpleUserService(userRepository());
+        return new MockedUserService(userFactory());
     }
 
 

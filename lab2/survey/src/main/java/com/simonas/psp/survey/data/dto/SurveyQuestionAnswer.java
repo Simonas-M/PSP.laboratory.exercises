@@ -2,12 +2,14 @@ package com.simonas.psp.survey.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotNull;
+
 public class SurveyQuestionAnswer {
-    @JsonProperty("user_id")
+    @JsonProperty("user_id")@NotNull
     private String userId;
-    @JsonProperty("survey_id")
+    @JsonProperty("survey_id")@NotNull
     private String surveyId;
-    @JsonProperty("question_id")
+    @JsonProperty("question_id")@NotNull
     private String questionId;
     private String answer;
 

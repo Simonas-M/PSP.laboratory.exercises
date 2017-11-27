@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 public class TimedExecutionFacade implements ExecutionFacade {
 
     @Override
-    public String answer(String userId, String surveyId, String questionId, String answer) {
-        return null;
-    }
-
-    @Override
     public String answer(SurveyQuestionAnswer surveyQuestionAnswer) {
         return null;
     }

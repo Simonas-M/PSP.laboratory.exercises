@@ -8,6 +8,8 @@ import com.simonas.psp.survey.facade.UserFacade;
 import com.simonas.psp.survey.facade.execution.SimpleExecutionFacade;
 import com.simonas.psp.survey.facade.survey.MockedSurveyFacade;
 import com.simonas.psp.survey.facade.user.RegisteredUserFacade;
+import com.simonas.psp.survey.integration.InformationDeliveryService;
+import com.simonas.psp.survey.integration.information.EmailService;
 import com.simonas.psp.survey.repository.ExecutionRepository;
 import com.simonas.psp.survey.repository.SurveyRepository;
 import com.simonas.psp.survey.repository.UserRepository;
@@ -44,19 +46,24 @@ public class AppConfig {
     public SurveyFacade surveyFacade() { return new MockedSurveyFacade(surveyRepository()); }
     @Bean
     public UserFacade userFacade() {
-        return new RegisteredUserFacade(userRepository(), userService(), userFactory());
+        return new RegisteredUserFacade(informationDeliveryService(), userRepository(), userService());
 //        return new AnonymousUserFacade();
     }
 
 
     @Bean
     public UserService userService() {
-        return new SimpleUserService(userRepository());
+        return new SimpleUserService(userRepository(), userFactory(), informationDeliveryService());
     }
 
 
     @Bean
     public UserFactory userFactory() {
         return new UpcaseUserFactory();
+    }
+
+    @Bean
+    public InformationDeliveryService informationDeliveryService() {
+        return new EmailService();
     }
 }

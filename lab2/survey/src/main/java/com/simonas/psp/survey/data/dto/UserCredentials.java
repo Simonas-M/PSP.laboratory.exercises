@@ -1,7 +1,11 @@
 package com.simonas.psp.survey.data.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class UserCredentials {
+    @NotNull
     private String nickname;
+    @NotNull
     private String password;
 
     public String getNickname() {

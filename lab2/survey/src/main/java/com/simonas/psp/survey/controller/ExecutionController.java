@@ -5,6 +5,8 @@ import com.simonas.psp.survey.data.dto.UserSurvey;
 import com.simonas.psp.survey.facade.ExecutionFacade;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class ExecutionController {
     private ExecutionFacade executionFacade;
@@ -15,13 +17,13 @@ public class ExecutionController {
 
     @RequestMapping(value = "/execute", method = RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestBody SurveyQuestionAnswer questionAnswer) {
+    public String login(@RequestBody @Valid SurveyQuestionAnswer questionAnswer) {
         return executionFacade.answer(questionAnswer);
     }
 
-    @RequestMapping("")
+    @RequestMapping("/progress")
     @ResponseBody
-    public String getProgress(@ModelAttribute UserSurvey userSurvey) {
+    public String getProgress(@ModelAttribute @Valid UserSurvey userSurvey) {
         return executionFacade.getUserProgress(userSurvey);
     }
 }

@@ -7,6 +7,7 @@ import com.simonas.psp.survey.repository.ExecutionRepository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class RepeatedExecutionRepository implements ExecutionRepository {
     private Map<User, Map<Survey, Map<Question, String>>> usersAnswers = new HashMap<>();
@@ -25,13 +26,16 @@ public class RepeatedExecutionRepository implements ExecutionRepository {
     }
 
     @Override
-    public Map<Survey, Map<Question, String>> getUserAnswers(User user) {
-        return usersAnswers.get(user);
+    public Optional<Map<Survey, Map<Question, String>>> getUserAnswers(User user) {
+        if(usersAnswers.containsKey(user)) {
+            return Optional.of(usersAnswers.get(user));
+        }
+        return Optional.empty();
     }
 
     @Override
     public void clearUserAnswers(User user) {
-        usersAnswers.get(user).clear();
+        getUserAnswers(user).ifPresent(Map::clear);
     }
 
     private Map<Question, String> createAndOrGetUserSurveyAnswers(User user, Survey survey) {

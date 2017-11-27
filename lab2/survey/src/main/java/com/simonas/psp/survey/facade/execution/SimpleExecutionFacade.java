@@ -11,6 +11,7 @@ import com.simonas.psp.survey.repository.SurveyRepository;
 import com.simonas.psp.survey.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -28,10 +29,10 @@ public class SimpleExecutionFacade implements ExecutionFacade {
     }
 
     @Override
-    public String answer(String userId, String surveyId, String questionId, String answer) {
-        Optional<User> optionalUser = userRepository.getById(userId);
-        Optional<Question> optionalQuestion = surveyRepository.getQuestionById(questionId);
-        Optional<Survey> optionalSurvey = surveyRepository.getById(surveyId);
+    public String answer(SurveyQuestionAnswer surveyQuestionAnswer) {
+        Optional<User> optionalUser = userRepository.getById(surveyQuestionAnswer.getUserId());
+        Optional<Question> optionalQuestion = surveyRepository.getQuestionById(surveyQuestionAnswer.getQuestionId());
+        Optional<Survey> optionalSurvey = surveyRepository.getById(surveyQuestionAnswer.getSurveyId());
 
         if (!optionalUser.isPresent()) {
            return "No such user found";
@@ -43,7 +44,7 @@ public class SimpleExecutionFacade implements ExecutionFacade {
             return "No such survey found";
         }
 
-        if (!optionalQuestion.get().getChoices().contains(answer)) {
+        if (!optionalQuestion.get().getChoices().contains(surveyQuestionAnswer.getAnswer())) {
             return "The answer provided is invalid";
         }
 
@@ -51,20 +52,10 @@ public class SimpleExecutionFacade implements ExecutionFacade {
         if (executionRepository.saveUserAnswer(optionalUser.get(),
                                                optionalSurvey.get(),
                                                optionalQuestion.get(),
-                                               answer)) {
+                                               surveyQuestionAnswer.getAnswer())) {
             return "Your answer was saved";
         }
         return "You have already answered this question";
-    }
-
-    @Override
-    public String answer(SurveyQuestionAnswer surveyQuestionAnswer) {
-        return answer(
-            surveyQuestionAnswer.getUserId(),
-            surveyQuestionAnswer.getSurveyId(),
-            surveyQuestionAnswer.getQuestionId(),
-            surveyQuestionAnswer.getAnswer()
-        );
     }
 
     @Override
@@ -77,7 +68,12 @@ public class SimpleExecutionFacade implements ExecutionFacade {
         if (!optionalSurvey.isPresent()) {
             return "No such survey found";
         }
-        return executionRepository.getUserAnswers(optionalUser.get()).values().toString();
+        Optional<Map<Survey, Map<Question, String>>> optionalUserAnswers = executionRepository
+                                                                    .getUserAnswers(optionalUser.get());
+        if (optionalUserAnswers.isPresent()) {
+            return optionalUserAnswers.get().values().toString();
+        }
+        return "User progress is not available at the moment";
     }
 
     @Override

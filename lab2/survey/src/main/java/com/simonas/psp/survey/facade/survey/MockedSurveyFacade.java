@@ -14,10 +14,12 @@ public class MockedSurveyFacade implements SurveyFacade {
     public MockedSurveyFacade(SurveyRepository surveyRepository) {
         this.surveyRepository = surveyRepository;
     }
-
     @Override
     public Survey getSurveyById(String id) {
-        return surveyRepository.getById(id).get();
+        return surveyRepository.getAll()
+            .stream()
+            .findFirst()
+            .orElse(null);
     }
 
     @Override

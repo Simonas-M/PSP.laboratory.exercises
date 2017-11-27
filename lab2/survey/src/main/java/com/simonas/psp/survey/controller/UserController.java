@@ -5,6 +5,7 @@ import com.simonas.psp.survey.data.entity.User;
 import com.simonas.psp.survey.facade.UserFacade;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,13 +18,13 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public String login(@ModelAttribute UserCredentials credentials) {
+    public String login(@ModelAttribute @Valid UserCredentials credentials) {
         return userFacade.login(credentials);
     }
 
     @RequestMapping("/sign-up")
     @ResponseBody
-    public String signUp(@ModelAttribute UserCredentials credentials) {
+    public String signUp(@ModelAttribute @Valid UserCredentials credentials) {
         return userFacade.signUp(credentials);
     }
 
