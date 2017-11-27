@@ -7,7 +7,7 @@ public abstract class User {
     private String nickname;
     private String password;
 
-    public User(String nickname, String password) {
+    protected User(String nickname, String password) {
         this.id = UUID.randomUUID();
         this.nickname = nickname;
         this.password = password;

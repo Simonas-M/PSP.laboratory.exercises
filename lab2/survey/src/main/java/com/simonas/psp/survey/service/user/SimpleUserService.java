@@ -7,7 +7,6 @@ import com.simonas.psp.survey.repository.UserRepository;
 import com.simonas.psp.survey.service.UserService;
 import org.springframework.stereotype.Component;
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.Optional;
 
 @Component

@@ -59,12 +59,12 @@ public class SimpleExecutionFacade implements ExecutionFacade {
     }
 
     @Override
-    public String getUserProgress(String userId, String surveyId) {
-        Optional<User> optionalUser = userRepository.getById(userId);
+    public String getUserProgress(UserSurvey userSurvey) {
+        Optional<User> optionalUser = userRepository.getById(userSurvey.getUserId());
         if (!optionalUser.isPresent()) {
             return "No such user found";
         }
-        Optional<Survey> optionalSurvey = surveyRepository.getById(surveyId);
+        Optional<Survey> optionalSurvey = surveyRepository.getById(userSurvey.getSurveyId());
         if (!optionalSurvey.isPresent()) {
             return "No such survey found";
         }
@@ -74,10 +74,5 @@ public class SimpleExecutionFacade implements ExecutionFacade {
             return optionalUserAnswers.get().values().toString();
         }
         return "User progress is not available at the moment";
-    }
-
-    @Override
-    public String getUserProgress(UserSurvey userSurvey) {
-        return getUserProgress(userSurvey.getUserId(), userSurvey.getSurveyId());
     }
 }
