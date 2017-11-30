@@ -1,7 +1,7 @@
 package com.simonas.psp.survey.integration.information;
 
 import com.simonas.psp.survey.data.entity.User;
-import com.simonas.psp.survey.integration.InformationDeliveryService;
+import com.simonas.psp.survey.service.InformationDeliveryService;
 import org.springframework.stereotype.Component;
 
 @Component

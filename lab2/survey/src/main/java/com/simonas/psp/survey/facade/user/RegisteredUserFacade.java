@@ -3,7 +3,7 @@ package com.simonas.psp.survey.facade.user;
 import com.simonas.psp.survey.data.dto.UserCredentials;
 import com.simonas.psp.survey.data.entity.User;
 import com.simonas.psp.survey.facade.UserFacade;
-import com.simonas.psp.survey.integration.InformationDeliveryService;
+import com.simonas.psp.survey.service.InformationDeliveryService;
 import com.simonas.psp.survey.repository.UserRepository;
 import com.simonas.psp.survey.service.UserService;
 import org.springframework.stereotype.Component;

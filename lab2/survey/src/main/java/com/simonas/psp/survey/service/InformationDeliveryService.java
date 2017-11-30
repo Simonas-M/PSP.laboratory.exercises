@@ -1,4 +1,4 @@
-package com.simonas.psp.survey.integration;
+package com.simonas.psp.survey.service;
 
 import com.simonas.psp.survey.data.entity.User;
 
