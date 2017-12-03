@@ -47,7 +47,6 @@ public class AppConfig {
     @Bean
     public UserFacade userFacade() {
         return new RegisteredUserFacade(informationDeliveryService(), userRepository(), userService());
-//        return new AnonymousUserFacade();
     }
 
 
